@@ -2,6 +2,9 @@
 
 namespace DataGridBundle;
 
+use Zend\Module\Manager,
+    Zend\Loader\AutoloaderFactory;
+
 class Module
 {
     public function init(Manager $moduleManager)
