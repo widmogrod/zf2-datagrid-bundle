@@ -1,5 +1,5 @@
 # Introduction
-DataGridBundle is simple integration with DataGrid linrary (https://github.com/widmogrod/DataGrid)
+DataGridBundle is simple integration with DataGrid library (https://github.com/widmogrod/DataGrid)
 
 # Requirements
 
