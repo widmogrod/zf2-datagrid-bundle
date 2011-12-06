@@ -2,16 +2,18 @@
 
 namespace DataGridBundle;
 
-class Module
-{
-    public function init(Manager $moduleManager)
-    {
-        $this->initAutoloader();
-    }
+use Zend\Module\Consumer\AutoloaderProvider;
 
-    public function initAutoloader()
+class Module implements AutoloaderProvider
+{
+    /**
+     * Return an array for passing to Zend\Loader\AutoloaderFactory.
+     *
+     * @return array
+     */
+    public function getAutoloaderConfig()
     {
-        AutoloaderFactory::factory(array(
+        return array(
             // @todo add class map
 //            'Zend\Loader\ClassMapAutoloader' => array(
 //                __DIR__ . '/autoload_classmap.php',
@@ -21,6 +23,6 @@ class Module
                     'DataGrid' => __DIR__ . '/vendor/DataGrid',
                 ),
             ),
-        ));
+        );
     }
 }

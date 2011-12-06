@@ -1,5 +1,5 @@
 # Introduction
-DataGridBundle is simple integration with DataGrid linrary (https://github.com/widmogrod/DataGrid)
+DataGridBundle is simple integration with DataGrid library (https://github.com/widmogrod/DataGrid)
 
 # Requirements
 
@@ -22,6 +22,44 @@ $q = $em->createQuery($dql);
 $grid = DataGrid::factory($q);
 $grid->setRenderer(new HtmlTable());
 echo $grid->render();
+```
+
+```
+<?php
+use DataGrid\DataGrid;
+use DataGrid\Renderer\HtmlTable;
+
+/* @var $q \Doctrine\ORM\Query */
+$q = $this->getQuery();
+
+$grid = DataGrid::factory($q);
+$grid->setRenderer(new HtmlTable());
+$grid->setSpecialColumn('facebookId', array(
+    DataGrid::CELL => function ($row) {
+        return sprintf('<img src="https://graph.facebook.com/%s/picture" >', $row['facebookId']);
+    },
+    DataGrid::COLUMN => array(
+        'name' => 'User Avatar',
+        'attribs' => array(
+            'width' => '50'
+        )
+    )
+));
+$grid->render();
+
+/*
+Output
+
+<table class="zebra-striped">
+<tr>
+    <th width="50">avatar</th>
+</tr>
+<tr>
+    <td><img src="https://graph.facebook.com/123/picture"></td>
+</tr>
+</table>
+*/
+?>
 ```
 
 P.S. Sory for my english.
